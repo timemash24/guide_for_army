@@ -34,7 +34,7 @@ function App() {
       console.log(error);
     }
   };
-  const testing = async (index) => {
+  const getAlbums = async () => {
     //request token using getAuth() function
     const access_token = await getAuth();
 
@@ -46,15 +46,14 @@ function App() {
           Authorization: `Bearer ${access_token}`,
         },
         params: {
-          inlcude_groups: 'album',
+          include_groups: 'album',
           market: 'KR',
           limit: 50,
-          offset: index * 50,
         },
       });
-      const data = await response.data.items;
 
-      console.log(data);
+      const data = await response.data.items;
+      console.log(response.data);
       setAlbums([...albums, ...data]);
     } catch (error) {
       console.log(error);
@@ -62,9 +61,7 @@ function App() {
   };
 
   useEffect(() => {
-    testing(0);
-    testing(1);
-    console.log(albums);
+    getAlbums();
   }, []);
 
   const renderAlbums = () => {
@@ -72,7 +69,7 @@ function App() {
     return albums.map((album) => (
       <div key={album.id}>
         {album.images.length ? (
-          <img src={album.images[2].url} alt="" />
+          <img src={album.images[1].url} alt="" />
         ) : (
           <div>No Image</div>
         )}
@@ -85,7 +82,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Spotify API - load albums</h1>
-        {/* {renderAlbums()} */}
+        {renderAlbums()}
       </header>
     </div>
   );
