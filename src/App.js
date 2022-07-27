@@ -54,6 +54,7 @@ function App() {
 
       const data = await response.data.items;
       console.log(response.data);
+      // data.map((album) => setAlbums([...albums, album]));
       setAlbums([...albums, ...data]);
     } catch (error) {
       console.log(error);
@@ -82,7 +83,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Spotify API - load albums</h1>
-        {renderAlbums()}
+        <div>
+          {albums.map((album) => (
+            <div key={album.id}>
+              {album.images.length ? (
+                <img src={album.images[1].url} alt="" />
+              ) : (
+                <div>No Image</div>
+              )}
+              {album.name}
+            </div>
+          ))}
+        </div>
       </header>
     </div>
   );
