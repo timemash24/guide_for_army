@@ -65,19 +65,19 @@ function App() {
     getAlbums();
   }, []);
 
-  const renderAlbums = () => {
-    // console.log(albums);
-    return albums.map((album) => (
-      <div key={album.id}>
-        {album.images.length ? (
-          <img src={album.images[1].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {album.name}
-      </div>
-    ));
-  };
+  // const renderAlbums = () => {
+  //   // console.log(albums);
+  //   return albums.map((album) => (
+  //     <div key={album.id}>
+  //       {album.images.length ? (
+  //         <img src={album.images[1].url} alt="" />
+  //       ) : (
+  //         <div>No Image</div>
+  //       )}
+  //       {album.name}
+  //     </div>
+  //   ));
+  // };
 
   return (
     <div className="App">
